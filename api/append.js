@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
         const { id, type, material, context, color, size, brand } = data
 
-        await collection.insertOne({ _id: id, type, material, context, color, size, brand })
+        await collection.replaceOne({ _id: id, type, material, context, color, size, brand }, { upsert: true })
 
         res.send('Ok!')
     } catch (error) {
