@@ -2,6 +2,8 @@ module.exports = async (req, res) => {
     console.log(req.body)
     console.log(req.headers)
 
+    const data = JSON.parse(Object.keys(req.body)[0])
+
     const { MongoClient } = require('mongodb')
     require('dotenv').config()
     const client = new MongoClient(process.env.MONGO)
@@ -13,7 +15,7 @@ module.exports = async (req, res) => {
         const db = client.db(dbName)
         const collection = db.collection(collectionName)
 
-        const { id, type, material, context, color, size, brand } = req.body
+        const { id, type, material, context, color, size, brand } = data
 
         await collection.insertOne({ _id: id, type, material, context, color, size, brand })
 
