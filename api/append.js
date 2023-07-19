@@ -15,9 +15,9 @@ module.exports = async (req, res) => {
         const db = client.db(dbName)
         const collection = db.collection(collectionName)
 
-        const { id, type, material, context, color, size, brand } = data
+        const { id, type, material, context, condition, color, size, brand } = data
 
-        await collection.replaceOne({ _id: id }, { _id: id, type, material, context, color, size, brand }, { upsert: true })
+        await collection.replaceOne({ _id: id }, { _id: id, type, material, context, condition, color, size, brand }, { upsert: true })
 
         res.send('Ok!')
     } catch (error) {
